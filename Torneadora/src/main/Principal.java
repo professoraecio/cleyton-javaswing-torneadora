@@ -4,6 +4,7 @@ import connection.FabricaConexao;
 import controller.ArquivosDao;
 import controller.BancoDao;
 import controller.ClienteDao;
+import entity.Cliente;
 import java.sql.Connection;
 import util.Alexa;
 import util.OsUtils;
@@ -18,6 +19,9 @@ public class Principal {
     public static String senhaMysql = "";
     public static Boolean conectou = false;
     public static String pastaUsers = "";
+    
+    public static Cliente cliente = new Cliente();
+    public static ClienteDao clienteDao = new ClienteDao();
     
     public static void main(String[] args) {
         while (conectou == false) {

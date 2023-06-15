@@ -3,6 +3,7 @@ package controller;
 import connection.FabricaConexao;
 import entity.Cliente;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 
 /**
@@ -54,12 +55,13 @@ public class ClienteDao {
             //INSERT INTO aluno (matricula,nome,genero,fone,endereco,dt_nasc) 
             //VALUES ('1','Jose','Masc','6299999-9999','Rua 1','01-01-1960');
             PreparedStatement pstm = (PreparedStatement) conexao.prepareStatement("INSERT INTO cliente (nome,genero,dt_nasc,endereco,celular,email,observacao,imagemPerfil) VALUES (?,?,?,?,?,?,?,?);");
-            pstm.setInt(1, aluno.getMatricula());
-            pstm.setString(2, aluno.getNome());
-            pstm.setString(3, aluno.getGenero());
-            pstm.setString(4, aluno.getFone());
-            pstm.setString(5, aluno.getEndereco());
-            pstm.setString(6, aluno.getDtNasc());
+            pstm.setInt(1, cliente.getId());
+            pstm.setString(2, cliente.getGenero());
+            pstm.setDate(3, (Date) cliente.getDt_nasc());
+            pstm.setString(4, cliente.getCelular());
+            pstm.setString(5, cliente.getEmail());
+            pstm.setString(6, cliente.getObservacao());
+            pstm.setString(7, cliente.getImagemPerfil());
 
             int linhas = pstm.executeUpdate();
             conexao.close();
