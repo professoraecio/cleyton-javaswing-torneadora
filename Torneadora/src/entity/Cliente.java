@@ -12,14 +12,14 @@ import java.util.Date;
  */
 public class Cliente {
     private int id;
-    private String nome;
-    private String genero;
-    private Date dt_nasc;
-    private String endereco;
-    private String celular;
-    private String email;
-    private String observacao;
-    private String imagemPerfil;
+    private String nome = "";
+    private String genero = "";
+    private Date dt_nasc = new Date();
+    private String endereco = "";
+    private String celular = "";
+    private String email = "";
+    private String observacao = "";
+    private String imagemPerfil = "";
 
     public int getId() {
         return id;

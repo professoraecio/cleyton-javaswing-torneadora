@@ -57,6 +57,7 @@ public class Principal {
         MenuPrincipalForm menuPrincipalForm = new MenuPrincipalForm();
         menuPrincipalForm.setVisible(true);
         menuPrincipalForm.setLocationRelativeTo(null);
+        System.out.println(cliente.getDt_nasc());
     }
     
     public static void criarBancoETabelas() {
