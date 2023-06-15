@@ -8,7 +8,8 @@ CREATE TABLE IF NOT EXISTS cliente(
     endereco VARCHAR(255),
     celular VARCHAR(255),
     email VARCHAR(255),
-    observacao VARCHAR(255)
+    observacao VARCHAR(255),
+    imagemPerfil VARCHAR(255)
 );
 
 

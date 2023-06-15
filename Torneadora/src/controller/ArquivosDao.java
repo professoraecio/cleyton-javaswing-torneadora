@@ -22,8 +22,9 @@ public class ArquivosDao {
         System.out.println(pastaUsers);
         osPathBar = OsUtils.getOSPathBar();
         FabricaArquivo.criarDiretorio(pastaUsers + osPathBar + "torneadora");
+        FabricaArquivo.criarDiretorio(pastaUsers + osPathBar + "torneadora" + osPathBar + "clientes");
     }
-    
+        
     public static void criarArquivoSenhaBanco(String senhaBanco){
         pastaUsers = OsUtils.getUsersFolder();
         osPathBar = OsUtils.getOSPathBar();

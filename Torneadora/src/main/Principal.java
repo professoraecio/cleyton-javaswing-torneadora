@@ -46,6 +46,7 @@ public class Principal {
             } else {
                 criarBancoETabelas();
                 //Alexa.escrevaJanela("Sucesso, conexão bem sucedida!");
+                ArquivosDao.criarPastaArquivosProjetoDentroPastaUsers();
                 conectou = true;
             }
         }

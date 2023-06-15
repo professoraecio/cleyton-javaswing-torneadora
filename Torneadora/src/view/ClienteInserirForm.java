@@ -4,6 +4,13 @@
  */
 package view;
 
+import java.awt.Image;
+import java.io.File;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 /**
  *
  * @author Admin
@@ -34,7 +41,7 @@ public class ClienteInserirForm extends javax.swing.JFrame {
         masculinoRadioButton = new javax.swing.JRadioButton();
         femininoRadioButton = new javax.swing.JRadioButton();
         naoInformarRadioButton = new javax.swing.JRadioButton();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        dataNascDateChooser = new com.toedter.calendar.JDateChooser();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -47,6 +54,9 @@ public class ClienteInserirForm extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         observacaoTextArea = new javax.swing.JTextArea();
+        imageLabel = new javax.swing.JLabel();
+        escolherImagemButton = new javax.swing.JButton();
+        salvarButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -102,6 +112,15 @@ public class ClienteInserirForm extends javax.swing.JFrame {
         observacaoTextArea.setRows(5);
         jScrollPane2.setViewportView(observacaoTextArea);
 
+        escolherImagemButton.setText("ESCOLHER IMAGEM");
+        escolherImagemButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                escolherImagemButtonActionPerformed(evt);
+            }
+        });
+
+        salvarButton.setText("SALVAR");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -116,13 +135,22 @@ public class ClienteInserirForm extends javax.swing.JFrame {
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(134, 134, 134)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(escolherImagemButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(salvarButton))
+                            .addComponent(imageLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(dataNascDateChooser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(masculinoRadioButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -141,10 +169,6 @@ public class ClienteInserirForm extends javax.swing.JFrame {
                                 .addComponent(emailTextField)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(1017, 1017, 1017))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(140, 140, 140)
-                .addComponent(jLabel6)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -166,7 +190,7 @@ public class ClienteInserirForm extends javax.swing.JFrame {
                     .addComponent(naoInformarRadioButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dataNascDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
@@ -184,7 +208,13 @@ public class ClienteInserirForm extends javax.swing.JFrame {
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(289, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(escolherImagemButton)
+                    .addComponent(salvarButton))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         pack();
@@ -209,6 +239,47 @@ public class ClienteInserirForm extends javax.swing.JFrame {
     private void masculinoRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_masculinoRadioButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_masculinoRadioButtonActionPerformed
+
+    private void escolherImagemButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_escolherImagemButtonActionPerformed
+        // TODO add your handling code here:
+        JFileChooser fileChooser = new JFileChooser();
+ 
+        //Limit type of file name extensions supported.
+ 
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("4 Extensions Supported", "jpg", "png", "jpeg", "gif");
+ 
+        fileChooser.setFileFilter(filter);
+ 
+        int selected = fileChooser.showOpenDialog(null);
+ 
+        //check if open button has been clicked.
+ 
+        if (selected == JFileChooser.APPROVE_OPTION) {
+ 
+            File file = fileChooser.getSelectedFile();
+ 
+            //Get Path of the selected image.
+ 
+            String getselectedImage = file.getAbsolutePath();
+ 
+            //Display image path on Message Dialog
+ 
+            JOptionPane.showMessageDialog(null, getselectedImage);
+ 
+            ImageIcon imIco = new ImageIcon(getselectedImage);
+ 
+            //make image fit on jlabel.
+ 
+            Image imFit = imIco.getImage();
+ 
+            Image imgFit = imFit.getScaledInstance(imageLabel.getWidth(), imageLabel.getHeight(), Image.SCALE_SMOOTH);
+ 
+            imageLabel.setIcon(new ImageIcon(imgFit));
+ 
+ 
+ 
+        }
+    }//GEN-LAST:event_escolherImagemButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -248,10 +319,12 @@ public class ClienteInserirForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JTextField celularTextField;
+    private com.toedter.calendar.JDateChooser dataNascDateChooser;
     private javax.swing.JTextField emailTextField;
     private javax.swing.JTextArea enderecoTextArea;
+    private javax.swing.JButton escolherImagemButton;
     private javax.swing.JRadioButton femininoRadioButton;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private javax.swing.JLabel imageLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -267,5 +340,6 @@ public class ClienteInserirForm extends javax.swing.JFrame {
     private javax.swing.JTextArea observacaoTextArea;
     private javax.swing.JButton retornarAoMenuDeClientesButton;
     private javax.swing.JButton retornarAoMenuPrincipalButton;
+    private javax.swing.JButton salvarButton;
     // End of variables declaration//GEN-END:variables
 }
