@@ -13,8 +13,8 @@ import java.sql.PreparedStatement;
  * @author mastermac
  */
 public class BancoDao {
-    
-        public boolean criarBanco() {
+
+    public boolean criarBanco() {
 
         Connection conexao = (Connection) FabricaConexao.getConnection();
         try {
@@ -38,5 +38,30 @@ public class BancoDao {
         }
         return false;
     }
-    
+
+    public boolean voltarModoDeFabrica() {
+
+        Connection conexao = (Connection) FabricaConexao.getConnection();
+        try {
+            String sql = "drop database torneadora;";
+            PreparedStatement pstm = (PreparedStatement) conexao.prepareStatement(sql);
+            int linhas = pstm.executeUpdate();
+            conexao.close();
+            return (linhas > 0) ? true : false;
+
+        } catch (Exception e) {
+            System.err.println(e);
+        } finally {
+            if (conexao != null) {
+                try {
+                    conexao.close();
+                } catch (Exception e) {
+                    System.err.println(e);
+                }
+
+            }
+        }
+        return false;
+    }
+
 }

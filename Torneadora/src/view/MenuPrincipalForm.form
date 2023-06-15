@@ -31,6 +31,11 @@
               </Group>
               <EmptySpace pref="1056" max="32767" attributes="0"/>
           </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="factoryModeButton" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -40,7 +45,9 @@
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="gerenciarClientesButton" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="685" max="32767" attributes="0"/>
+              <EmptySpace pref="656" max="32767" attributes="0"/>
+              <Component id="factoryModeButton" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -61,6 +68,14 @@
         </Property>
         <Property name="text" type="java.lang.String" value="MENU PRINCIPAL"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="factoryModeButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="VOLTAR APLICA&#xc7;&#xc3;O AO MODO DE F&#xc1;BRICA (RE-CRIAR BANCO E ZERAR DADOS)"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="factoryModeButtonActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

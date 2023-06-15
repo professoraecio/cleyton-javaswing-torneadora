@@ -35,4 +35,9 @@ public class FabricaConexao {
     public static void setDefaultDB(){
         URL_BD = "jdbc:mysql://localhost:3306/torneadora";
     }
+    
+    public static void resetDB(){
+        URL_BD = "jdbc:mysql://localhost:3306/mysql";
+    }
+    
 }

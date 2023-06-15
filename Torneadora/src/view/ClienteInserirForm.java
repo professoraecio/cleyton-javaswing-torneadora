@@ -11,6 +11,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import main.Principal;
+import util.Alexa;
 
 /**
  *
@@ -248,48 +249,55 @@ public class ClienteInserirForm extends javax.swing.JFrame {
     private void escolherImagemButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_escolherImagemButtonActionPerformed
         // TODO add your handling code here:
         JFileChooser fileChooser = new JFileChooser();
- 
+
         //Limit type of file name extensions supported.
- 
         FileNameExtensionFilter filter = new FileNameExtensionFilter("4 Extensions Supported", "jpg", "png", "jpeg", "gif");
- 
+
         fileChooser.setFileFilter(filter);
- 
+
         int selected = fileChooser.showOpenDialog(null);
- 
+
         //check if open button has been clicked.
- 
         if (selected == JFileChooser.APPROVE_OPTION) {
- 
+
             File file = fileChooser.getSelectedFile();
- 
+
             //Get Path of the selected image.
- 
             String getselectedImage = file.getAbsolutePath();
- 
+
             //Display image path on Message Dialog
- 
             JOptionPane.showMessageDialog(null, getselectedImage);
- 
+
             ImageIcon imIco = new ImageIcon(getselectedImage);
- 
+
             //make image fit on jlabel.
- 
             Image imFit = imIco.getImage();
- 
+
             Image imgFit = imFit.getScaledInstance(imageLabel.getWidth(), imageLabel.getHeight(), Image.SCALE_SMOOTH);
- 
+
             imageLabel.setIcon(new ImageIcon(imgFit));
- 
- 
- 
+
         }
     }//GEN-LAST:event_escolherImagemButtonActionPerformed
 
     private void salvarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvarButtonActionPerformed
         // TODO add your handling code here:
         Principal.cliente.setNome(nomeTextField.getText());
-        
+        if (masculinoRadioButton.isSelected()) {
+            Principal.cliente.setGenero("MASCULINO");
+        } else {
+            if (femininoRadioButton.isSelected()) {
+                Principal.cliente.setGenero("FEMININO");
+            } else {
+                if (naoInformarRadioButton.isSelected()) {
+                    Principal.cliente.setGenero("NÃO INFORMAR");
+                } else {
+                    Alexa.escrevaJanela("Atenção, escolha uma opção de gênero.");
+                    return;
+                }
+            }
+        }
+
         Principal.clienteDao.inserir(Principal.cliente);
     }//GEN-LAST:event_salvarButtonActionPerformed
 

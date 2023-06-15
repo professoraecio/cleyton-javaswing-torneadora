@@ -4,6 +4,11 @@
  */
 package view;
 
+import connection.FabricaConexao;
+import controller.BancoDao;
+import main.Principal;
+import util.Alexa;
+
 /**
  *
  * @author Admin
@@ -28,6 +33,7 @@ public class MenuPrincipalForm extends javax.swing.JFrame {
 
         gerenciarClientesButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        factoryModeButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -41,6 +47,13 @@ public class MenuPrincipalForm extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel1.setText("MENU PRINCIPAL");
 
+        factoryModeButton.setText("VOLTAR APLICAÇÃO AO MODO DE FÁBRICA (RE-CRIAR BANCO E ZERAR DADOS)");
+        factoryModeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                factoryModeButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -51,6 +64,10 @@ public class MenuPrincipalForm extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(gerenciarClientesButton))
                 .addContainerGap(1056, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(factoryModeButton)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -59,7 +76,9 @@ public class MenuPrincipalForm extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(gerenciarClientesButton)
-                .addContainerGap(685, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 656, Short.MAX_VALUE)
+                .addComponent(factoryModeButton)
+                .addContainerGap())
         );
 
         pack();
@@ -72,6 +91,16 @@ public class MenuPrincipalForm extends javax.swing.JFrame {
         menuClientesForm.setLocationRelativeTo(null);
         this.dispose();
     }//GEN-LAST:event_gerenciarClientesButtonActionPerformed
+
+    private void factoryModeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_factoryModeButtonActionPerformed
+        // TODO add your handling code here:
+        FabricaConexao.resetDB(); // mudar de banco
+        BancoDao bancoDao = new BancoDao();
+        bancoDao.voltarModoDeFabrica(); // apagar banco de dados da torneadora
+        Principal.criarBancoETabelas(); // re-criar tabelas
+        FabricaConexao.setDefaultDB(); // voltar ao banco principal
+        Alexa.escrevaJanela("Todos os dados do sistema foram apagados!");
+    }//GEN-LAST:event_factoryModeButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -109,6 +138,7 @@ public class MenuPrincipalForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton factoryModeButton;
     private javax.swing.JButton gerenciarClientesButton;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
