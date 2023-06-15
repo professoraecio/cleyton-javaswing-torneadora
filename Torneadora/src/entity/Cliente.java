@@ -4,10 +4,19 @@
  */
 package entity;
 
+import java.util.Date;
+
 /**
  *
  * @author mastermac
  */
 public class Cliente {
-    
+    private int id;
+    private String nome;
+    private String genero;
+    private Date dt_nasc;
+    private String endereco;
+    private String celular;
+    private String email;
+    private String observacao;
 }

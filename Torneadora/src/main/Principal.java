@@ -7,6 +7,7 @@ import controller.ClienteDao;
 import java.sql.Connection;
 import util.Alexa;
 import util.OsUtils;
+import view.MenuPrincipalForm;
 
 /**
  *
@@ -40,14 +41,17 @@ public class Principal {
                             + "\ninstale primeiro para depois prosseguirmos por favor."
                             + "\nUse a senha MySQL$3rver para o usuário root.");
                     conectou = true;
+                    System.exit(0);
                 }
             } else {
                 criarBancoETabelas();
-                Alexa.escrevaJanela("Sucesso, conexão bem sucedida!");
+                //Alexa.escrevaJanela("Sucesso, conexão bem sucedida!");
                 conectou = true;
             }
         }
-        
+        MenuPrincipalForm menuPrincipalForm = new MenuPrincipalForm();
+        menuPrincipalForm.setVisible(true);
+        menuPrincipalForm.setLocationRelativeTo(null);
     }
     
     public static void criarBancoETabelas() {
