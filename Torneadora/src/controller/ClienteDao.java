@@ -117,5 +117,44 @@ public class ClienteDao {
         }
         return null;
     }
+    
+        public boolean atualizar(Cliente cliente) {
+        //alunos.add(aluno);
+        Connection conexao = (Connection) FabricaConexao.getConnection();
+        try {
+
+            java.sql.Date sqlDate = new java.sql.Date(cliente.getDt_nasc().getTime());
+            System.out.println(sqlDate);
+
+            PreparedStatement pstm = (PreparedStatement) conexao.prepareStatement("UPDATE cliente SET nome=? , genero=? , dt_nasc=? , endereco=? , celular=? , email=? , observacao=? , imagemPerfil=? WHERE id=?;");
+
+            pstm.setString(1, cliente.getNome());
+            pstm.setString(2, cliente.getGenero());
+            pstm.setDate(3, sqlDate);
+            pstm.setString(4, cliente.getEndereco());
+            pstm.setString(5, cliente.getCelular());
+            pstm.setString(6, cliente.getEmail());
+            pstm.setString(7, cliente.getObservacao());
+            pstm.setString(8, cliente.getImagemPerfil());
+            pstm.setInt(9, cliente.getId());
+
+            int linhas = pstm.executeUpdate();
+            conexao.close();
+            return (linhas > 0) ? true : false;
+
+        } catch (Exception e) {
+            System.err.println(e);
+        } finally {
+            if (conexao != null) {
+                try {
+                    conexao.close();
+                } catch (Exception e) {
+                    System.err.println(e);
+                }
+
+            }
+        }
+        return false;
+    }
 
 }

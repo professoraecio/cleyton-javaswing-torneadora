@@ -19,6 +19,8 @@ import util.Alexa;
  */
 public class ClienteInserirForm extends javax.swing.JFrame {
 
+    String tipoImagem = "";
+
     /**
      * Creates new form ClienteInserirForm
      */
@@ -265,6 +267,24 @@ public class ClienteInserirForm extends javax.swing.JFrame {
             //Get Path of the selected image.
             String getselectedImage = file.getAbsolutePath();
 
+            if (getselectedImage.contains("jpg")) {
+                System.out.println("imagem jpg");
+                tipoImagem = "JPG";
+            } else {
+                if (getselectedImage.contains("png")) {
+                    System.out.println("imagem png");
+                    tipoImagem = "PNG";
+                } else {
+                    if (getselectedImage.contains("jpeg")) {
+                        System.out.println("imagem jpeg");
+                        tipoImagem = "JPEG";
+                    } else {
+                        System.out.println("imagem gif");
+                        tipoImagem = "GIF";
+                    }
+                }
+            }
+
             //Display image path on Message Dialog
             JOptionPane.showMessageDialog(null, getselectedImage);
 
@@ -305,8 +325,11 @@ public class ClienteInserirForm extends javax.swing.JFrame {
 
         Principal.clienteDao.inserir(Principal.cliente);
         Integer lastId = Principal.clienteDao.getUltimoId();
-        System.out.println("" + lastId);
-        
+        System.out.println("" + lastId + "." + tipoImagem);
+        Principal.cliente.setImagemPerfil("" + lastId + "." + tipoImagem);
+        Principal.cliente.setId(lastId);
+        Principal.clienteDao.atualizar(Principal.cliente);
+
     }//GEN-LAST:event_salvarButtonActionPerformed
 
     /**
