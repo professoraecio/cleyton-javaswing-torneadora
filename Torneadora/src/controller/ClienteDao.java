@@ -5,6 +5,7 @@ import entity.Cliente;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 /**
  *
@@ -47,17 +48,17 @@ public class ClienteDao {
         }
         return false;
     }
-    
-        public boolean inserir(Cliente cliente) {
+
+    public boolean inserir(Cliente cliente) {
         //alunos.add(aluno);
         Connection conexao = (Connection) FabricaConexao.getConnection();
         try {
-            
+
             java.sql.Date sqlDate = new java.sql.Date(cliente.getDt_nasc().getTime());
             System.out.println(sqlDate);
-            
+
             PreparedStatement pstm = (PreparedStatement) conexao.prepareStatement("INSERT INTO cliente (nome,genero,dt_nasc,endereco,celular,email,observacao,imagemPerfil) VALUES (?,?,?,?,?,?,?,?);");
-            
+
             pstm.setString(1, cliente.getNome());
             pstm.setString(2, cliente.getGenero());
             pstm.setDate(3, sqlDate);
@@ -84,6 +85,37 @@ public class ClienteDao {
             }
         }
         return false;
+    }
+
+    public Integer getUltimoId() {
+        int lastId = 0;
+        Connection conexao = (Connection) FabricaConexao.getConnection();
+        try {
+ 
+            PreparedStatement pstm = (PreparedStatement) conexao.prepareStatement("select max(id) as ultimo from cliente;");
+            ResultSet rs = pstm.executeQuery();
+
+            while (rs.next()) {
+                lastId = rs.getInt("ultimo");
+            }
+
+            conexao.close();
+
+            return lastId;
+
+        } catch (Exception e) {
+            System.err.println(e);
+        } finally {
+            if (conexao != null) {
+                try {
+                    conexao.close();
+                } catch (Exception e) {
+                    System.err.println(e);
+                }
+
+            }
+        }
+        return null;
     }
 
 }

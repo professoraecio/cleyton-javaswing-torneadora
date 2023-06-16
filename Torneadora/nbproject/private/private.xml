@@ -6,11 +6,9 @@
             <file>file:/C:/netbeans-projects/cleyton-javaswing-torneadora/Torneadora/src/connection/FabricaConexao.java</file>
             <file>file:/C:/netbeans-projects/cleyton-javaswing-torneadora/Torneadora/src/view/ClienteInserirForm.java</file>
             <file>file:/C:/netbeans-projects/cleyton-javaswing-torneadora/Torneadora/src/main/Principal.java</file>
-            <file>file:/C:/netbeans-projects/cleyton-javaswing-torneadora/Torneadora/src/entity/Cliente.java</file>
+            <file>file:/C:/netbeans-projects/cleyton-javaswing-torneadora/Torneadora/src/util/Alexa.java</file>
+            <file>file:/C:/netbeans-projects/cleyton-javaswing-torneadora/Torneadora/src/controller/BancoDao.java</file>
             <file>file:/C:/netbeans-projects/cleyton-javaswing-torneadora/Torneadora/src/view/MenuPrincipalForm.java</file>
-            <file>file:/C:/netbeans-projects/cleyton-javaswing-torneadora/Torneadora/src/connection/ScriptBanco.sql</file>
-            <file>file:/C:/netbeans-projects/cleyton-javaswing-torneadora/Torneadora/src/view/MenuClientesForm.java</file>
-            <file>file:/C:/netbeans-projects/cleyton-javaswing-torneadora/Torneadora/src/controller/ClienteDao.java</file>
         </group>
     </open-files>
 </project-private>

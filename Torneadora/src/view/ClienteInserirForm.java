@@ -304,6 +304,9 @@ public class ClienteInserirForm extends javax.swing.JFrame {
         Principal.cliente.setCelular(celularTextField.getText());
 
         Principal.clienteDao.inserir(Principal.cliente);
+        Integer lastId = Principal.clienteDao.getUltimoId();
+        System.out.println("" + lastId);
+        
     }//GEN-LAST:event_salvarButtonActionPerformed
 
     /**
