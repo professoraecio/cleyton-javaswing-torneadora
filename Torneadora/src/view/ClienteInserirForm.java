@@ -297,6 +297,11 @@ public class ClienteInserirForm extends javax.swing.JFrame {
                 }
             }
         }
+        Principal.cliente.setDt_nasc(dataNascDateChooser.getDate());
+        Principal.cliente.setEndereco(enderecoTextArea.getText());
+        Principal.cliente.setEmail(emailTextField.getText());
+        Principal.cliente.setObservacao(observacaoTextArea.getText());
+        Principal.cliente.setCelular(celularTextField.getText());
 
         Principal.clienteDao.inserir(Principal.cliente);
     }//GEN-LAST:event_salvarButtonActionPerformed
