@@ -19,7 +19,6 @@ public class ArquivosDao {
     
     public static void criarPastaArquivosProjetoDentroPastaUsers(){
         pastaUsers = OsUtils.getUsersFolder();
-        System.out.println(pastaUsers);
         osPathBar = OsUtils.getOSPathBar();
         FabricaArquivo.criarDiretorio(pastaUsers + osPathBar + "torneadora");
         FabricaArquivo.criarDiretorio(pastaUsers + osPathBar + "torneadora" + osPathBar + "clientes");
@@ -35,6 +34,14 @@ public class ArquivosDao {
         pastaUsers = OsUtils.getUsersFolder();
         osPathBar = OsUtils.getOSPathBar();
         return FabricaArquivo.lerLinhaDoArquivo(pastaUsers + osPathBar + "torneadora" + osPathBar + "senha.txt", 0);
+    }
+    
+    public static void copiarFotoPerfilParaPastaDentroAplicacao(String urlOrigemImagem, String arquivoDestino){
+        pastaUsers = OsUtils.getUsersFolder();
+        osPathBar = OsUtils.getOSPathBar();
+        String destino = pastaUsers + osPathBar + "torneadora" + osPathBar + "clientes" + osPathBar + arquivoDestino;
+        FabricaArquivo.clonaArquivo(urlOrigemImagem, destino);
+        
     }
     
 }

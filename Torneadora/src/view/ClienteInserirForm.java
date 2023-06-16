@@ -4,6 +4,7 @@
  */
 package view;
 
+import controller.ArquivosDao;
 import java.awt.Image;
 import java.io.File;
 import javax.swing.ImageIcon;
@@ -12,6 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import main.Principal;
 import util.Alexa;
+import util.FabricaArquivo;
 
 /**
  *
@@ -20,6 +22,8 @@ import util.Alexa;
 public class ClienteInserirForm extends javax.swing.JFrame {
 
     String tipoImagem = "";
+    String urlOrigemImagem = "";
+    boolean usuarioEscolheuUmaImagem = false;
 
     /**
      * Creates new form ClienteInserirForm
@@ -286,7 +290,8 @@ public class ClienteInserirForm extends javax.swing.JFrame {
             }
 
             //Display image path on Message Dialog
-            JOptionPane.showMessageDialog(null, getselectedImage);
+            //JOptionPane.showMessageDialog(null, getselectedImage);
+            urlOrigemImagem = getselectedImage;
 
             ImageIcon imIco = new ImageIcon(getselectedImage);
 
@@ -296,6 +301,8 @@ public class ClienteInserirForm extends javax.swing.JFrame {
             Image imgFit = imFit.getScaledInstance(imageLabel.getWidth(), imageLabel.getHeight(), Image.SCALE_SMOOTH);
 
             imageLabel.setIcon(new ImageIcon(imgFit));
+
+            usuarioEscolheuUmaImagem = true;
 
         }
     }//GEN-LAST:event_escolherImagemButtonActionPerformed
@@ -322,13 +329,23 @@ public class ClienteInserirForm extends javax.swing.JFrame {
         Principal.cliente.setEmail(emailTextField.getText());
         Principal.cliente.setObservacao(observacaoTextArea.getText());
         Principal.cliente.setCelular(celularTextField.getText());
+        
+        if(usuarioEscolheuUmaImagem == false){
+            Alexa.escrevaJanela("Escolha uma imagem de perfil para o \nusuário para concluir o cadastro...");
+            return;
+        }
 
+        // Persistir dados no banco...
+        
         Principal.clienteDao.inserir(Principal.cliente);
         Integer lastId = Principal.clienteDao.getUltimoId();
         System.out.println("" + lastId + "." + tipoImagem);
         Principal.cliente.setImagemPerfil("" + lastId + "." + tipoImagem);
         Principal.cliente.setId(lastId);
         Principal.clienteDao.atualizar(Principal.cliente);
+        ArquivosDao.copiarFotoPerfilParaPastaDentroAplicacao(urlOrigemImagem, "" + lastId + "." + tipoImagem);
+
+        Alexa.escrevaJanela("Registro salvo com sucesso!");
 
     }//GEN-LAST:event_salvarButtonActionPerformed
 
